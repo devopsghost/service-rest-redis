@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    /* agent {
-        dockerfile true
-    } */
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('Dockerhub-Cred-Local-Jenkins')
+    }
     tools {
         maven 'maven3.9.9'
     }
@@ -30,6 +30,17 @@ pipeline {
             steps {
                 sh 'docker build -t cp22590/service-rest-redis:1.0.0 .'
             }
+        }
+        stage('Push Image to Dockerhub') {
+            steps {
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                sh 'docker push cp22590/service-rest-redis:1.0.0'
+            }
+        }
+    }
+    post {
+        always {
+            sh 'docker logout'
         }
     }
 }
