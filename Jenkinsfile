@@ -1,5 +1,8 @@
 pipeline {
-    agent any
+    //agent any
+    agent {
+        dockerfile true
+    }
     tools {
         maven 'maven3.9.9'
     }
