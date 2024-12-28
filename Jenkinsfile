@@ -1,8 +1,8 @@
 pipeline {
-    //agent any
-    agent {
+    agent any
+    /* agent {
         dockerfile true
-    }
+    } */
     tools {
         maven 'maven3.9.9'
     }
@@ -28,7 +28,7 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                docker build -t cp22590/service-rest-redis:1.0.0 .
+                sh 'docker build -t cp22590/service-rest-redis:1.0.0 .'
             }
         }
     }
