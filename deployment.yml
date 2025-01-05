@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-rest-redis-deployment
+  labels:
+    app: service-rest-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-rest-redis
+  template:
+    metadata:
+      labels:
+        app: service-rest-redis
+    spec:
+      containers:
+        - name: service-rest-redis
+          image: cp22590/service-rest-redis:2.0.0
+          ports:
+            - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-rest-jenkins-deployment
+  labels:
+    app: service-rest-jenkins
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-rest-jenkins
+  template:
+    metadata:
+      labels:
+        app: service-rest-jenkins
+    spec:
+      containers:
+        - name: service-rest-jenkins
+          image: cp22590/service-rest-jenkins:2.0.0
+          ports:
+            - containerPort: 9080
+          env:
+            - name: SERVICE_URL
+              value: "http://rest-redis-clusterip-service.default.svc.cluster.local:8080"
