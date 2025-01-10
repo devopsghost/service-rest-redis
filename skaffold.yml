@@ -5,10 +5,10 @@ metadata:
 build:
   artifacts:
     - image: cp22590/service-rest-redis
-      docker:
+#      docker:
+#        dockerfile: Dockerfile
+      kaniko:
         dockerfile: Dockerfile
-#      kaniko:
-#        dockerfile: ./Dockerfile
 #        buildArgs:
 #          localDir: {}
   tagPolicy:
