@@ -12,4 +12,10 @@ public class PersonController {
 
         return ResponseEntity.ok("User 1");
     }
+
+    @GetMapping("/getVersion")
+    public ResponseEntity<String> getVersion() {
+
+        return ResponseEntity.ok("Version 3");
+    }
 }

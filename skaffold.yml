@@ -1,0 +1,13 @@
+apiVersion: skaffold/v1
+kind: Config
+metadata:
+  name: skaffold-config
+build:
+  artifacts:
+    - image: cp22590/service-rest-redis
+      kaniko:
+        dockerfile: ./Dockerfile
+        buildArgs:
+          localDir: {}
+  tagPolicy:
+    sha256: {}
