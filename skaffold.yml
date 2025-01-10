@@ -3,6 +3,8 @@ kind: Config
 metadata:
   name: skaffold-config
 build:
+  cluster:
+    namespace: local-jenkins-namespace
   artifacts:
     - image: cp22590/service-rest-redis
 #      docker:
