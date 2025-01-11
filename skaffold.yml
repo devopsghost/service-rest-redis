@@ -10,7 +10,7 @@ build:
   artifacts:
     - image: cp22590/service-rest-redis
       kaniko:
-        dockerfile: ../Dockerfile
+        dockerfile: Dockerfile
 #      docker: --> Commented Docker as trying to use Kaniko. Skaffold obviously works with Docker with these 2 lines.
 #        dockerfile: Dockerfile
   tagPolicy:
